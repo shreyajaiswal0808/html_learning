@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Clone Pro</title>
+
+<style>
+:root{
+--bg:#000;
+--text:#fff;
+--muted:#b3b3b3;
+--accent:#e50914;
+--card:#141414;
+--border:#333;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Inter,Arial,sans-serif;
+}
+
+/* Container */
+.container{width:90%;max-width:1200px;margin:auto}
+
+/* Navbar */
+.header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(6px);
+}
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:1rem 0;
+}
+.logo{height:32px}
+.btn{
+background:var(--accent);
+border:none;
+color:#fff;
+padding:.6rem 1.2rem;
+border-radius:4px;
+font-weight:600;
+cursor:pointer;
+}
+.btn:hover{opacity:.9}
+
+/* Hero */
+.hero{
+position:relative;
+min-height:80vh;
+display:flex;
+align-items:center;
+text-align:center;
+}
+.hero img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(.45);
+}
+.hero-content{
+position:relative;
+z-index:2;
+max-width:800px;
+margin:auto;
+}
+.hero h1{font-size:3rem}
+.hero p{margin:.5rem 0;color:var(--muted)}
+.cta{
+margin-top:1rem;
+display:flex;
+gap:.5rem;
+flex-wrap:wrap;
+justify-content:center;
+}
+.cta input{
+padding:.9rem;
+width:280px;
+background:#111;
+border:1px solid var(--border);
+color:#fff;
+border-radius:4px;
+}
+
+/* Divider */
+.divider{height:8px;background:#222}
+
+/* Features */
+.feature{padding:3rem 0}
+.feature-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:2rem;
+align-items:center;
+}
+.feature img{width:100%;border-radius:8px}
+.feature h2{font-size:2rem}
+.feature p{color:var(--muted)}
+
+/* Trending Auto Scroll */
+.scroller{
+display:flex;
+gap:1rem;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+.scroller::-webkit-scrollbar{display:none}
+
+/* Cards */
+.card{
+min-width:180px;
+position:relative;
+border-radius:6px;
+overflow:hidden;
+transition:.3s;
+}
+.card img{width:100%;display:block}
+.card:hover{transform:scale(1.1)}
+.card .overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.7);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+transition:.3s;
+}
+.card:hover .overlay{opacity:1}
+
+/* FAQ */
+.faq{padding:3rem 0}
+.faq-item{
+border:1px solid var(--border);
+margin-bottom:.7rem;
+background:#111;
+}
+.faq-item label{
+display:block;
+padding:1rem;
+cursor:pointer;
+font-weight:600;
+}
+.faq-item input{display:none}
+.answer{
+max-height:0;
+overflow:hidden;
+transition:.3s;
+padding:0 1rem;
+color:var(--muted);
+}
+.faq-item input:checked~.answer{
+max-height:200px;
+padding:1rem;
+}
+
+/* Footer */
+.footer{
+padding:2rem 0;
+color:var(--muted);
+}
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+gap:1rem;
+}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+
+/* Back to top */
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+padding:.6rem 1rem;
+border:none;
+border-radius:50px;
+background:var(--accent);
+color:#fff;
+display:none;
+cursor:pointer;
+}
+
+/* Responsive */
+@media(max-width:800px){
+.feature-grid{grid-template-columns:1fr}
+.hero h1{font-size:2.2rem}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div class="container nav">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="logo">
+<button class="btn" onclick="openLogin()">Sign In</button>
+</div>
+</header>
+
+<section class="hero">
+<img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66">
+<div class="hero-content">
+<h1>Unlimited movies, TV shows & more</h1>
+<p>Watch anywhere. Cancel anytime.</p>
+<div class="cta">
+<input type="email" placeholder="Email address">
+<button class="btn">Get Started</button>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="feature">
+<div class="container feature-grid">
+<div>
+<h2>Enjoy on your TV</h2>
+<p>Smart TVs, PlayStation, Xbox, Chromecast and more.</p>
+</div>
+<img src="https://picsum.photos/1200/700?random=1" alt="TV">
+</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="container">
+<h2 style="margin:1rem 0">Trending Now</h2>
+<div class="scroller">
+<div class="card"><img src="https://picsum.photos/200/300?1"><div class="overlay">▶ Play</div></div>
+<div class="card"><img src="https://picsum.photos/200/300?2"><div class="overlay">▶ Play</div></div>
+<div class="card"><img src="https://picsum.photos/200/300?3"><div class="overlay">▶ Play</div></div>
+<div class="card"><img src="https://picsum.photos/200/300?4"><div class="overlay">▶ Play</div></div>
+<div class="card"><img src="https://picsum.photos/200/300?5"><div class="overlay">▶ Play</div></div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="container faq">
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<input type="checkbox" id="f1">
+<label for="f1">What is Netflix?</label>
+<div class="answer">Netflix is a streaming service with movies & TV shows.</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="f2">
+<label for="f2">How much does it cost?</label>
+<div class="answer">Plans vary by region and device.</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<footer class="footer container">
+<div class="footer-grid">
+<a href="#">FAQ</a><a href="#">Help</a><a href="#">Account</a>
+<a href="#">Jobs</a><a href="#">Privacy</a><a href="#">Contact</a>
+</div>
+<p style="margin-top:1rem">Netflix India</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.onscroll=()=> {
+document.getElementById("topBtn").style.display=
+window.scrollY>300?"block":"none";
+}
+function openLogin(){
+alert("Login feature coming soon 🚀");
+}
+</script>
+
+</body>
+</html>
